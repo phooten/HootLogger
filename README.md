@@ -6,6 +6,7 @@ Example logging REPO: https://github.com/srtamrakar/python-logger/tree/master
 
 
 # Installation tips:
+    Upload module to pypi to be installed: https://packaging.python.org/en/latest/tutorials/packaging-projects/
 
 <pip install .>
 
