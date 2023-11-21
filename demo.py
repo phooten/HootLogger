@@ -1,4 +1,4 @@
-import class_messages
+from HootLogger import messages
 
 msg = class_messages.messages()
 
