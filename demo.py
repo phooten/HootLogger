@@ -1,6 +1,6 @@
-from HootLogger import messages
+from HootLogger import logger
 
-msg = class_messages.messages()
+msg = logger.messages()
 
 def testing():
     msg.error( "error message here.", __name__ )
