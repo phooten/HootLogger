@@ -1,16 +1,21 @@
 # Modules
 import sys
 import re
+import inspect
+from pathlib import Path
+# using datetime module
+import datetime;
 
 #TODO: Get the current UTC time to print out with messages
 
 class messages:
 
-    def __init__( self ):
+    def __init__( self, file_name ):
         self._max_character_length = 10
         self._message_type = ""
         self._user_message = ""
-
+        self._file_name = ""
+        self.setFileName( file_name )
         return
 
     def error( self, msg, func_name ):
@@ -52,6 +57,8 @@ class messages:
         Returns:        Void
         """
 
+        self.getFileNameAndFunction()
+
         if not self.printUserMessage( func_name, "SYSTEM", msg ):
             self.quit_script()
 
@@ -65,11 +72,6 @@ class messages:
 
 
     def printUserMessage( self, func_name, msg_type, msg_to_user ):
-        """
-        Description:    
-        Arguments:      
-        Returns:        
-        """
 
         # Formats the message type then sets it
         if not self.setMessageType( msg_type ):
@@ -78,14 +80,22 @@ class messages:
         # replaces all newlines with new lines and a tab
         msg_to_user = re.sub( "\n", "\n\t\t", msg_to_user )
 
-        # Prints final message
-        print( func_name + ": " + self.getMessageType() + msg_to_user )
+        self.setUserMessage( msg_to_user, func_name)
+
+        print( self.getUserMessage() )
 
         return True
 
 
+    def getFileNameAndFunction( self ):
+        caller_path = Path(inspect.stack()[1][1])
+        print(f'{caller_path.name}: ')
+        return
+
+
     def getMessageType( self ):
         return self._message_type
+
 
     def setMessageType( self, message_type ):
         """
@@ -123,9 +133,22 @@ class messages:
         Returns:        
         """
 
-        self._user_message = func_name + ": " + getMessageType() + " " + getMessage()
+        self._user_message = self.getTimeStamp() + ": " + self.getFileName() + ": " + func_name + ": " + self.getMessageType() + " " + self.getMessageType()
 
         return True
 
     def getUserMessage( self ):
         return self._user_message
+
+    def setFileName( self, name ):
+        self._file_name = name
+        return
+
+    def getFileName( self ):
+        return self._file_name
+
+    def getTimeStamp( self ):
+        ct = str( datetime.datetime.now() )
+        print( "timestamp: " + ct + "\n" )
+
+        return ct
