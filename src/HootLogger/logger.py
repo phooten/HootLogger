@@ -57,7 +57,7 @@ class messages:
         Returns:        Void
         """
 
-        self.getFileNameAndFunction()
+        #self.getFileNameAndFunction()
 
         if not self.printUserMessage( func_name, "SYSTEM", msg ):
             self.quit_script()
@@ -133,7 +133,7 @@ class messages:
         Returns:        
         """
 
-        self._user_message = self.getTimeStamp() + ": " + self.getFileName() + ": " + func_name + ": " + self.getMessageType() + " " + self.getMessageType()
+        self._user_message = self.getTimeStamp() + ": " + self.getFileName() + ": " + func_name + ": " + self.getMessageType() + " " + self.getMessageType() + message
 
         return True
 
@@ -149,6 +149,6 @@ class messages:
 
     def getTimeStamp( self ):
         ct = str( datetime.datetime.now() )
-        print( "timestamp: " + ct + "\n" )
+        #print( "timestamp: " + ct + "\n" )
 
         return ct
