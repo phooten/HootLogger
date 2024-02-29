@@ -3,9 +3,9 @@ from HootLogger import logger
 msg = logger.messages(__name__)
 
 def testing():
-    msg.error( "error message here.", __name__ )
-    msg.warning( "warning message here.", __name__ )
-    msg.system( "normal message here.", __name__ )
+    msg.error( "error message here." )
+    msg.warning( "warning message here." )
+    msg.system( "normal message here." )
     msg.quit_script()
     return
 

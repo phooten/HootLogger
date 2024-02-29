@@ -6,8 +6,6 @@ from pathlib import Path
 # using datetime module
 import datetime;
 
-#TODO: Get the current UTC time to print out with messages
-
 class messages:
 
     def __init__( self, file_name ):
@@ -18,7 +16,7 @@ class messages:
         self.setFileName( file_name )
         return
 
-    def error( self, msg, func_name ):
+    def error( self, msg ):
         """
         Description:    Prints out message to the user
         Arguments:      msg     - (string) to be printed out to user
@@ -26,14 +24,18 @@ class messages:
                                 name of the previous funcion is
         Returns:        Void
         """
+        frame = inspect.stack()[1]
+        module = inspect.getmodule(frame[0])
+        filename = module.__file__
+        funcname = module.__name__
 
-        if not self.printUserMessage( func_name, "ERROR", msg ):
+        if not self.printUserMessage( filename, funcname, "ERROR", msg ):
             self.quit_script()
 
         return
 
 
-    def warning( self, msg, func_name ):
+    def warning( self, msg ):
         """
         Description:    Prints out message to the user
         Arguments:      msg     - (string) to be printed out to user
@@ -42,13 +44,18 @@ class messages:
         Returns:        Void
         """
 
-        if not self.printUserMessage( func_name, "WARNING", msg ):
+        frame = inspect.stack()[1]
+        module = inspect.getmodule(frame[0])
+        filename = module.__file__
+        funcname = module.__name__
+
+        if not self.printUserMessage( filename, funcname,"WARNING", msg ):
             self.quit_script()
 
         return
 
 
-    def system( self, msg, func_name ):
+    def system( self, msg ):
         """
         Description:    Prints out message to the user
         Arguments:      msg     - (string) to be printed out to user
@@ -57,9 +64,12 @@ class messages:
         Returns:        Void
         """
 
-        #self.getFileNameAndFunction()
-
-        if not self.printUserMessage( func_name, "SYSTEM", msg ):
+        frame = inspect.stack()[1]
+        module = inspect.getmodule(frame[0])
+        filename = module.__file__
+        funcname = module.__name__
+    
+        if not self.printUserMessage( filename, funcname, "SYSTEM", msg ):
             self.quit_script()
 
         return
@@ -71,7 +81,7 @@ class messages:
         exit(1)
 
 
-    def printUserMessage( self, func_name, msg_type, msg_to_user ):
+    def printUserMessage( self, file_name, func_name, msg_type, msg_to_user ):
 
         # Formats the message type then sets it
         if not self.setMessageType( msg_type ):
@@ -80,7 +90,7 @@ class messages:
         # replaces all newlines with new lines and a tab
         msg_to_user = re.sub( "\n", "\n\t\t", msg_to_user )
 
-        self.setUserMessage( msg_to_user, func_name)
+        self.setUserMessage( file_name, func_name, msg_to_user )
 
         print( self.getUserMessage() )
 
@@ -126,14 +136,14 @@ class messages:
         return True
 
 
-    def setUserMessage( self, message, func_name ):
+    def setUserMessage( self, file_name, func_name, message ):
         """
         Description:    
         Arguments:      
         Returns:        
         """
 
-        self._user_message = self.getTimeStamp() + ": " + self.getFileName() + ": " + func_name + ": " + self.getMessageType() + " " + self.getMessageType() + message
+        self._user_message = self.getTimeStamp() + ": '" + file_name + "' : '" + func_name + "' : " + self.getMessageType() + message
 
         return True
 
