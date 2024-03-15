@@ -13,10 +13,25 @@ Example logging REPO: https://github.com/srtamrakar/python-logger/tree/master
 
 # Installation Process:
     1. Write the module
+        - Follow this tutorial: https://packaging.python.org/en/latest/tutorials/packaging-projects/
+
     2. Build module
         - python3 -m pip install --upgrade build
         - python3 -m build
-    2. Upload module to pypi to be installed: https://packaging.python.org/en/latest/tutorials/packaging-projects/
+
+    3. Upload module to pypi to be installed:
+        - python3 -m pip install --upgrade twine
+        - Upload to test server:
+            python3 -m twine upload --repository testpypi dist/* --verbose
+        -Upload to real server:
+            python3 -m twine upload dist/* --verbose
+
+    4. Install the module:
+        - Test Installation
+            python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps phootlogger
+        - Real installation
+            python3 -m pip install phootlogger
+
 
 
 # Repository structure
@@ -37,20 +52,18 @@ Example logging REPO: https://github.com/srtamrakar/python-logger/tree/master
             python3.11
                 ...
         pyenv.cfg
-    build
-        bdist.macosx-12-arm64
     dist
-        HootLogger-0.0.1-py3-none-any.whl
-        HootLogger-0.0.1.tar.gz
+        phootlogger-0.0.1-py3-none-any.whl
+        phootlogger-0.0.1.tar.gz
     LICENSE
     pyproject.toml
     setup.py
     src
-        HootLogger
+        phootlogger
             __init__.py
             __pycache__
             logger.py
-        HootLogger.egg-info
+        phootlogger.egg-info
         demo.py
     README.md
     requirements.txt
