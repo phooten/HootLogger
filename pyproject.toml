@@ -2,9 +2,8 @@
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
-
 [project]
-name = "HootLogger"
+name = "phootlogger"
 version = "0.0.1"
 authors = [
   { name="Parker Hooten", email="parkerhooten@gmail.com" },
@@ -20,10 +19,9 @@ classifiers = [
     "Operating System :: MAC OS",
 ]
 
-
-#[project.urls]
-#"Homepage" = "https://github.com/pypa/sampleproject"
-#"Bug Tracker" = "https://github.com/pypa/sampleproject/issues"
+[project.urls]
+"Homepage" = "https://github.com/phooten/phootlogger/"
+"Bug Tracker" = "https://github.com/phooten/phootlogger/issues"
 
 
 #dependencies = [

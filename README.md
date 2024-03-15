@@ -1,15 +1,62 @@
+# About
+The purpose of this library is to provide a logger for my other projects. It also
+is acting as a learning process for publishing a python module.
+
 # TODO:
 sort out the proper file / function printing
 
 # Messages Package
-
 This is a package that can be included in projects to output messages
 
 Example logging REPO: https://github.com/srtamrakar/python-logger/tree/master
 
 
-# Installation tips:
-    Upload module to pypi to be installed: https://packaging.python.org/en/latest/tutorials/packaging-projects/
+# Installation Process:
+    1. Write the module
+    2. Build module
+        - python3 -m pip install --upgrade build
+        - python3 -m build
+    2. Upload module to pypi to be installed: https://packaging.python.org/en/latest/tutorials/packaging-projects/
+
+
+# Repository structure
+    .gitignore
+    .venv
+        bin
+            activate...
+            pip
+            pip3
+            pip3.11
+            python
+            python3
+            python3.11
+        include
+            python3.11
+                ...
+        lib
+            python3.11
+                ...
+        pyenv.cfg
+    build
+        bdist.macosx-12-arm64
+    dist
+        HootLogger-0.0.1-py3-none-any.whl
+        HootLogger-0.0.1.tar.gz
+    LICENSE
+    pyproject.toml
+    setup.py
+    src
+        HootLogger
+            __init__.py
+            __pycache__
+            logger.py
+        HootLogger.egg-info
+        demo.py
+    README.md
+    requirements.txt
+    tests
+
+
 
 <pip install .>
 

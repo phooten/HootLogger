@@ -1,4 +1,4 @@
-from HootLogger import logger
+from phootlogger import logger
 
 msg = logger.messages(__name__)
 
